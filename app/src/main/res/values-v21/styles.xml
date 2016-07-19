@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorAccent">@color/primary</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorPrimaryDark">@color/secundary</item>
+        <item name="android:textColorPrimary">@color/secundary</item>
+        <item name="android:actionMenuTextColor">@color/secundary</item>
+        <item name="colorControlNormal">@color/secundary</item>
+        <item name="colorControlActivated">@color/secundary</item>
+        <item name="colorControlHighlight">@color/secundary</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+
+        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
+
+
+    </style>
+
+    <style name="AppTheme.StyleBH">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/secundary</item>
+        <item name="colorPrimary">@color/primary</item>
+    </style>
+
+
+
+
+    <style name="AlertDialogCustom" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textColorPrimary">@color/secundary</item>
+        <item name="android:textColorSecondary">@color/secundary</item>
+        <item name="android:colorAccent">@color/primary</item>
+    </style>
+
+
+</resources>

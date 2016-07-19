@@ -1,0 +1,86 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowContentOverlay">@null</item>
+
+        <item name="android:spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorPrimaryDark">@color/secundary</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
+        <item name="android:textColorPrimary">@color/secundary</item>
+        <item name="android:textColorHint">@color/secundary</item>
+        <item name="colorAccent">@color/secundary</item>
+        <item name="colorControlNormal">@color/secundary</item>
+
+
+    </style>
+
+
+
+    <style name="TitleTextStyle" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#d8d2b8</item>
+    </style>
+
+    <style name="StyleBH.Title" >
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="StyleBH.SubTitle" >
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">10dp</item>
+
+
+
+    </style>
+
+
+    <style name="StyleBH.Title.Inverse" >
+        <item name="android:textColor">#b7ad84</item>
+    </style>
+
+    <style name="StyleBH">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="colorControlNormal">@color/secundary</item>
+        <item name="colorControlActivated">@color/secundary</item>
+        <item name="colorControlHighlight">@color/secundary</item>
+
+    </style>
+
+    <style name="StyleBH.category">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="StyleBH.Inverse">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#b7ad84</item>
+    </style>
+
+        <style name="StyleBH.Button" >
+            <item name="android:layout_width" >wrap_content</item>
+            <item name="android:layout_height" >wrap_content</item>
+            <item name="android:textColor" >#d8d2b8</item>
+            <item name="android:gravity" >center</item>
+            <item name="android:textSize" >14sp</item>
+            <item name="android:textStyle" >bold</item>
+
+        </style>
+
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:background">#d8d2b8</item>
+        <item name="android:popupBackground">#d8d2b8</item>
+
+
+    </style>
+
+
+
+
+</resources>

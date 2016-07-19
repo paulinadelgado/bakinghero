@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/content_fram"
+    android:background="#d8d2b8">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:id="@+id/textView"
+        android:background="@drawable/deco"
+        android:layout_alignParentTop="true" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lstRecipes"
+        style="@style/StyleBH"
+        android:layout_centerHorizontal="true"
+        android:divider="@color/fab_color_1_muted"
+        android:dividerHeight="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/textView" />
+
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/ic_add2"
+        fab:fab_colorNormal="@color/fab_color_1"
+        fab:fab_colorPressed="@color/fab_color_1_muted"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|right"/>
+
+
+</RelativeLayout>

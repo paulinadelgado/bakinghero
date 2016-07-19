@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/convert"
+            android:icon="@mipmap/ic_converter"
+            android:title="@string/conve"/>
+        <item
+            android:id="@+id/recipe"
+            android:icon="@mipmap/ic_recipes"
+            android:title="@string/rec"/>
+
+    </group>
+
+
+</menu>
