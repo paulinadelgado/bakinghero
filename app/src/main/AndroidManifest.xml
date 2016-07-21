@@ -3,16 +3,20 @@
     package="com.paulinadelgado.bakinghero" >
     
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
+        android:supportsRtl="false"
         android:configChanges="orientation"
-
         >
+
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -21,6 +25,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
+            <intent-filter android:label="@string/filter_title_viewrecipes">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http"
+                    android:host="paulinadelgado.com"
+                    android:pathPrefix="/bakinghero" />
+            </intent-filter>
+
         </activity>
 
 

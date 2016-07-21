@@ -18,8 +18,9 @@
     <color name="fab_color_1">#ffffff</color>
     <color name="fab_color_1_muted">#d8d2b8</color>
 
-    <color name="primary">#d8d2b8</color>
-    <color name="secundary">#b7ad84</color>
+    <color name="primary">#bfb89d</color>
+    <color name="secundary">#a0966d</color>
     <color name="accent">#ffffff</color>
+
 
 </resources>

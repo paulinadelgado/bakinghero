@@ -3,11 +3,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowContentOverlay">@null</item>
-
+        <item name="android:spinnerItemStyle">@style/spinnerItemStyle</item>
         <item name="android:spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
         <item name="colorPrimary">@color/accent</item>
         <item name="colorPrimaryDark">@color/secundary</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
+        <item name="android:homeAsUpIndicator">@mipmap/ic_drawer</item>
         <item name="android:textColorPrimary">@color/secundary</item>
         <item name="android:textColorHint">@color/secundary</item>
         <item name="colorAccent">@color/secundary</item>
@@ -73,11 +73,14 @@
         </style>
 
     <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:background">#d8d2b8</item>
-        <item name="android:popupBackground">#d8d2b8</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:background">@color/primary</item>
+        <item name="android:popupBackground">@color/primary</item>
+        <item name="android:gravity">center</item>
+    </style>
 
-
+    <style name="spinnerItemStyle">
+        <item name="android:gravity">center</item>
     </style>
 
 

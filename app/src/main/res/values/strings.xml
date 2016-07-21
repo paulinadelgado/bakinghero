@@ -1,28 +1,14 @@
 <resources >
     <string name="app_name">Baking Hero</string>
-    <string name="title_add">Add Recipe Baking Hero</string>
-    <string name="title_view">View Recipe Baking Hero</string>
-    <string name="title_recipe">Recipes Recipe Baking Hero</string>
-    <string name="action_settings">Setting</string>
     <string name="action_info">Information</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="deleteRecipe">Are you sure?</string>
-    <string name="Add_New">Add new</string>
-    <string name="sortBy">Sort by</string>
-    <string name="order_name">Order by Name</string>
-    <string name="order_category">Order by Category</string>
-    <string name="order_date">Order by Date</string>
-    <string name="search">search</string>
     <string name="doily_deco">Deco</string>
     <string name="title_info">Information</string>
     <string name="info_text">All liquid units are US "size".\nWeight in fine powders can vary a little.\nButter stick size is in US commercial size.\n   </string>
     <string name="backup">Backup</string>
     <string name="importDB">Import recipes</string>
     <string name="exportDB">Export recipes</string>
-    <string name="Add_Recipe">Add Recipe</string>
     <string name="category">Category</string>
     <string name="name">Name</string>
     <string name="ingredients">Ingredients</string>
@@ -31,15 +17,12 @@
     <string name="view_des">view recipe</string>
     <string name="edit_des">edit recipe</string>
     <string name="delete_des">delete recipe</string>
-    <string name="title_rec">Recipes</string>
     <string name="select_unit">Select unit type</string>
     <string name="weight">Weight Units</string>
     <string name="liquids">Liquids Units</string>
     <string name="fine">Fine powders Units</string>
     <string name="butter">Butter Units</string>
-    <string name="temp">Tempeature Units</string>
-    <string name="item">item</string>
-    <string name="iconDraw">Icon</string>
+    <string name="temp">Temperature Units</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="sucUp">Successfully Updated</string>
@@ -51,17 +34,6 @@
     <string name="conve">Converter</string>
     <string name="rec">Recipes</string>
 
-    <string-array name="Tags">
-        <item>Converter</item>
-        <item>Recipes</item>
-        <item>Tips</item>
-    </string-array>
-
-    <string name="drawer_open">Abrir navigation drawer</string>
-    <string name="drawer_close">Cerrar navigation drawer</string>
-    <string name="headlines">Encabezados de</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="choose_unit">Choose Unit</string>
     <string name="btn_convert">CONVERT</string>
     <string name="btn_save">SAVE</string>
@@ -69,8 +41,17 @@
     <string name="txtTo">To</string>
     <string name="deleteTitle">Delete?</string>
     <string name="deleteDes">Are you sure you want to delete</string>
-    <string name="impor">Imported from</string>
+    <string name="impor">Imported to</string>
     <string name="expor">Exported to</string>
+    <string name="filter_title_viewrecipes">Baking recipes</string>
+
+
+
+
+
+    <string name="emptyU">Empty Unit Field</string>
+    <string name="select">Select</string>
+    <string name="selcuni">Select Conversion Unit</string>
 
     <array name="cat">
 
@@ -86,19 +67,10 @@
     </array>
 
 
-    <string-array name="units">
-        <item>Select</item>
-        <item>Oz</item>
-        <item>gm</item>
-        <item>Stick</item>
-        <item>Tbsp</item>
-        <item>Tsp</item>
-    </string-array>
 
 
 
-
-
+    <string name="banner_ad_unit_id">ca-app-pub-7509155694866238/8327255704</string>
 
 
 

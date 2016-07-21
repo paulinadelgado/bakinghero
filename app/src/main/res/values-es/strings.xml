@@ -1,0 +1,71 @@
+<resources >
+    <string name="app_name">Baking Hero</string>
+    <string name="action_info">Información</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Borrar</string>
+    <string name="doily_deco">Deco</string>
+    <string name="title_info">Información</string>
+    <string name="info_text">
+        Todas las unidades liquidas están en unidades EU.\n
+        El peso en los polvos finos pueden variar un poco.\n
+        El tamaño de mantequilla es en tamaño comercial de EU.\n
+    </string>
+    <string name="backup">Respaldo</string>
+    <string name="importDB">Importar recetas</string>
+    <string name="exportDB">Export recetas</string>
+    <string name="category">Categoría</string>
+    <string name="name">Nombre</string>
+    <string name="ingredients">Ingredientes</string>
+    <string name="instructions">Instrucciones</string>
+    <string name="notes">Notas</string>
+    <string name="view_des">ver receta</string>
+    <string name="edit_des">editar receta</string>
+    <string name="delete_des">borrar receta</string>
+    <string name="select_unit">Seleccionar tipo de unidad</string>
+    <string name="weight">Unidades de peso</string>
+    <string name="liquids">Unidades de liquidos</string>
+    <string name="fine">Unidades de polvos finos</string>
+    <string name="butter">Unidades de mantequilla</string>
+    <string name="temp">Unidades de temperatura</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">OK</string>
+    <string name="sucUp">Actulizado exitosamente</string>
+    <string name="sucAd">Agregado exitosamente</string>
+    <string name="emCat">Campo de categoría vacio</string>
+    <string name="emNam">Campo de nombre vacio</string>
+    <string name="update">ACTULIZAR</string>
+
+    <string name="conve">Convertidor</string>
+    <string name="rec">Recetas</string>
+
+    <string name="choose_unit">Elige una unidad</string>
+    <string name="btn_convert">CONVERTIR</string>
+    <string name="btn_save">GUARDAR</string>
+    <string name="txtFrom">De</string>
+    <string name="txtTo">A</string>
+    <string name="deleteTitle">Borrar?</string>
+    <string name="deleteDes">Seguro que desea borrar</string>
+    <string name="impor">Importado a </string>
+    <string name="expor">Exportado a </string>
+
+    <string name="filter_title_viewrecipes">Recetas para hornear</string>
+
+    <string name="emptyU">Campo de unidades vacio</string>
+    <string name="select">Seleccionar</string>
+    <string name="selcuni">Seleccionar unidad de conversión</string>
+
+    <array name="cat">
+
+        <item>Seleccionar</item>
+        <item>Dulces</item>
+        <item>Pastelillos</item>
+        <item>Paste</item>
+        <item>Brownies</item>
+        <item>Cheesecake</item>
+        <item>Galletas</item>
+        <item>Pan</item>
+        <item>Otros</item>
+    </array>
+
+
+</resources>

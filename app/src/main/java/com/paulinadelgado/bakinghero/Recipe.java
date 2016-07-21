@@ -5,14 +5,13 @@ package com.paulinadelgado.bakinghero;
  */
 
 
-
-public class Recipe {
-    public int _id;
-    public String _category;
-    public String _name;
-    public String _ingredients;
-    public String _instructions;
-    public String _notes;
+class Recipe {
+    private int _id;
+    private String _category;
+    private String _name;
+    private String _ingredients;
+    private String _instructions;
+    private String _notes;
 
     public Recipe(){
     }

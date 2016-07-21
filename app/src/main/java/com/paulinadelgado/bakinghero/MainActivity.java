@@ -10,11 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar appbar;
     private DrawerLayout drawerLayout;
-    private NavigationView navView;
 
 
     @Override
@@ -22,23 +21,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        appbar = (Toolbar)findViewById(R.id.appbar);
-        setSupportActionBar(appbar);
-        getSupportActionBar().setElevation(0);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer);
+
+
+
+
+
+        Toolbar appbar = (Toolbar) findViewById(R.id.appbar);
+        setSupportActionBar(appbar);
+
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setElevation(0);
+        }
+
+        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_drawer);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
 
-        Fragment fragment =null;
+        Fragment fragment;
         FragmentTransaction t = getFragmentManager().beginTransaction();
         fragment = new ConverterFragment();
         t.replace(R.id.content_frame, fragment);
         t.commit();
 
-        navView = (NavigationView)findViewById(R.id.navview);
+        NavigationView navView = (NavigationView) findViewById(R.id.navview);
         navView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -50,15 +58,18 @@ public class MainActivity extends AppCompatActivity {
 
                         switch (menuItem.getItemId()) {
                             case R.id.convert:
-
+                                getFragmentManager().popBackStack();
                                 fragment = new ConverterFragment();
 
                                 break;
                             case R.id.recipe:
+                                getFragmentManager().popBackStack();
                                 fragment = new RecipesFragment();
 
                                 break;
                         }
+
+
 
                         t.replace(R.id.content_frame, fragment);
                         t.commit();
@@ -86,14 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    @Override
-    public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 0 ){
-            getFragmentManager().popBackStack();
-        } else {
-            super.onBackPressed();
-        }
-    }
+
 
 
 

@@ -37,8 +37,7 @@
                     <corners android:radius="3dp" />
                     <solid android:color="#aaa387" />
                 </shape>
-                <corners
-                    android:radius="4dp" />
+
             </item>
 
             <item android:bottom="2dp" android:right="2dp">

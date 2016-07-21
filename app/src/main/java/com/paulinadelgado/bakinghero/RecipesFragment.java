@@ -1,13 +1,16 @@
 package com.paulinadelgado.bakinghero;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,6 +26,9 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.io.File;
@@ -38,14 +44,9 @@ public class RecipesFragment extends Fragment  {
 
     //
 
-    ListView Recipe_listview;
-    List<Recipe> recipe_data = new ArrayList<Recipe>();
-    ListRecipeAdapter rAdapter;
-    DatabaseHandler db;
-    TextView txtID;
-    private SQLiteDatabase database;
-
-
+    private ListView Recipe_listview;
+    private final List<Recipe> recipe_data = new ArrayList<>();
+    private ListRecipeAdapter rAdapter;
 
 
     @Override
@@ -55,16 +56,17 @@ public class RecipesFragment extends Fragment  {
         View rootView = inflater.inflate(R.layout.fragment_recipes, container, false);
         setHasOptionsMenu(true);
 
-        File direct = new File(Environment.getExternalStorageDirectory() + "/BackupFolder");
 
-        if(!direct.exists())
-        {
-            if(direct.mkdir())
-            {
-                //directory is created;
-            }
 
-        }
+        AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        AdView adView = new AdView(getActivity());
+        adView.setAdSize(AdSize.SMART_BANNER);
+
+
+
+
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
@@ -78,19 +80,20 @@ public class RecipesFragment extends Fragment  {
                 b.putInt("USER_ID", 0);
                 b.putString("called", "new");
                 mFrag.setArguments(b);
-                t.replace(R.id.content_frame, mFrag);
                 t.addToBackStack(null);
+                t.replace(R.id.content_frame, mFrag);
                 t.commit();
             }
         });
 
-        db = new DatabaseHandler(getActivity());
+        DatabaseHandler db;
+
+
 
 
         try {
             Recipe_listview = (ListView) rootView.findViewById(R.id.lstRecipes);
             Recipe_listview.setTextFilterEnabled(true);
-            txtID = (TextView) rootView.findViewById(R.id.user_name_id);
             Recipe_listview.setItemsCanFocus(false);
 
 
@@ -161,7 +164,7 @@ public class RecipesFragment extends Fragment  {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                rAdapter.filter(newText.toString().trim());
+                rAdapter.filter(newText.trim());
                 Recipe_listview.invalidate();
                 return true;
 
@@ -177,8 +180,23 @@ public class RecipesFragment extends Fragment  {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
 
-        super.onOptionsItemSelected(item);
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                super.onOptionsItemSelected(item);
+            } else {
+
+
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},23
+                );
+            }
+        }
+
+
 
         switch (item.getItemId()) {
 
@@ -220,16 +238,15 @@ public class RecipesFragment extends Fragment  {
             if (sd.canWrite()) {
                 String  currentDBPath= "//data//" + "com.paulinadelgado.bakinghero"
                         + "//databases//" + "recipesManager";
-                String backupDBPath  = "/BackupFolder/recipesManager";
+                String backupDBPath  = "/BackupFolderBH/recipesManager";
                 File  backupDB= new File(data, currentDBPath);
                 File currentDB  = new File(sd, backupDBPath);
-
                 FileChannel src = new FileInputStream(currentDB).getChannel();
                 FileChannel dst = new FileOutputStream(backupDB).getChannel();
                 dst.transferFrom(src, 0, src.size());
                 src.close();
                 dst.close();
-                Toast.makeText(getActivity().getBaseContext(),R.string.impor + backupDB.toString(),
+                Toast.makeText(getActivity().getBaseContext(),getString(R.string.impor) + backupDB.toString(),
                         Toast.LENGTH_LONG).show();
 
             }
@@ -244,6 +261,7 @@ public class RecipesFragment extends Fragment  {
     private void exportDB() {
         // TODO Auto-generated method stub
 
+
         try {
             File sd = Environment.getExternalStorageDirectory();
             File data = Environment.getDataDirectory();
@@ -251,7 +269,7 @@ public class RecipesFragment extends Fragment  {
             if (sd.canWrite()) {
                 String  currentDBPath= "//data//" + "com.paulinadelgado.bakinghero"
                         + "//databases//" + "recipesManager";
-                String backupDBPath  = "/BackupFolder/recipesManager";
+                String backupDBPath  = "/BackupFolderBH/recipesManager";
                 File currentDB = new File(data, currentDBPath);
                 File backupDB = new File(sd, backupDBPath);
 
@@ -260,7 +278,7 @@ public class RecipesFragment extends Fragment  {
                 dst.transferFrom(src, 0, src.size());
                 src.close();
                 dst.close();
-                Toast.makeText(getActivity().getBaseContext(),R.string.expor+ backupDB.toString(),
+                Toast.makeText(getActivity().getBaseContext(),getString(R.string.expor)+ backupDB.toString(),
                         Toast.LENGTH_LONG).show();
 
             }
@@ -270,6 +288,7 @@ public class RecipesFragment extends Fragment  {
                     .show();
 
         }
+
     }
 
 
@@ -278,14 +297,14 @@ public class RecipesFragment extends Fragment  {
 
     public class ListRecipeAdapter extends ArrayAdapter implements Filterable{
 
-        List<Recipe> mlist;
+        final List<Recipe> mlist;
 
-        ArrayList<Recipe> arraylist;
+        final ArrayList<Recipe> arraylist;
 
         public ListRecipeAdapter(Context context, int resource, List<Recipe> list) {
             super(context, resource);
             mlist=list;
-            arraylist =new ArrayList<Recipe>();
+            arraylist =new ArrayList<>();
             arraylist.addAll(mlist);
 
         }
@@ -336,8 +355,6 @@ public class RecipesFragment extends Fragment  {
 
                 @Override
                 public void onClick(final View v) {
-                    Log.i("View Button Clicked", "**********");
-
                     FragmentTransaction t = getActivity().getFragmentManager().beginTransaction();
                     Fragment fragment = new AddDisplayRecipe();
                     Bundle dataBundle = new Bundle();
@@ -359,8 +376,6 @@ public class RecipesFragment extends Fragment  {
 
                 @Override
                 public void onClick(final View v) {
-                    Log.i("Edit Button Clicked", "**********");
-
                     FragmentTransaction t = getActivity().getFragmentManager().beginTransaction();
                     Fragment fragment = new AddDisplayRecipe();
                     Bundle dataBundle = new Bundle();
@@ -383,11 +398,10 @@ public class RecipesFragment extends Fragment  {
 
                 @Override
                 public void onClick(final View v) {
-                    Log.i("Delete Button Clicked", "**********");
                     AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
                     adb.setTitle(R.string.deleteTitle);
                     adb.setMessage(R.string.deleteDes);
-                    final int user_id = recId;
+
                     adb.setNegativeButton(R.string.cancel, null);
                     adb.setPositiveButton(R.string.ok,
                             new AlertDialog.OnClickListener() {
@@ -397,7 +411,7 @@ public class RecipesFragment extends Fragment  {
 
                                     DatabaseHandler dBHandler = new DatabaseHandler(
                                             getActivity().getApplicationContext());
-                                    dBHandler.Delete_Recipe(user_id);
+                                    dBHandler.Delete_Recipe(recId);
                                     FragmentTransaction t = getActivity().getFragmentManager().beginTransaction();
                                     Fragment fragment = new RecipesFragment();
                                     t.replace(R.id.content_frame, fragment);
@@ -435,6 +449,7 @@ public class RecipesFragment extends Fragment  {
                 }
             }
             notifyDataSetChanged();
+
         }
 
 

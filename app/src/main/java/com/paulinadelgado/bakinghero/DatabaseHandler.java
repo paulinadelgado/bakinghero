@@ -9,10 +9,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-/**
- * Created by pauparapapau on 29/06/16.
- */
-public class DatabaseHandler extends SQLiteOpenHelper {
+class DatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
@@ -31,7 +28,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_ING = "ingredients";
     private static final String KEY_INST = "instructions";
     private static final String KEY_NOTES = "notes";
-    private final ArrayList<Recipe> recipe_list = new ArrayList<Recipe>();
+    private final ArrayList<Recipe> recipe_list = new ArrayList<>();
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -66,7 +63,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_CATEGORY,recipe.getCategory()); //Recipe
-        values.put(KEY_NAME, recipe.getName()); // Recipe Nama
+        values.put(KEY_NAME, recipe.getName()); // Recipe Name
         values.put(KEY_ING, recipe.getIngredients()); //
         values.put(KEY_INST, recipe.getInstructions()); //
         values.put(KEY_NOTES, recipe.getNotes());
@@ -85,6 +82,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
+        assert cursor != null;
         Recipe recipe = new Recipe(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
         // return Recipe
@@ -164,7 +162,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Getting Recipes Count
-    public int Get_Total_Recipes() {
+    /*public int Get_Total_Recipes() {
         String countQuery = "SELECT  * FROM " + TABLE_RECIPES;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
@@ -172,6 +170,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // return count
         return cursor.getCount();
-    }
+    }*/
 
 }

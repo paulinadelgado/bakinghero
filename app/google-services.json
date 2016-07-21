@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "477232862116",
+    "firebase_url": "https://bakinghero-b3080.firebaseio.com",
+    "project_id": "bakinghero-b3080",
+    "storage_bucket": "bakinghero-b3080.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477232862116:android:2a1bebb9aae51afd",
+        "android_client_info": {
+          "package_name": "com.paulinadelgado.bakinghero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "477232862116-nahdv8go6pcv9725ihm5t074uov0far5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRTjZkcrmWRRjunT41WkgdGbcrse0tMzk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

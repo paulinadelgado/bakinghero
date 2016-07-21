@@ -18,25 +18,44 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class ConverterFragment extends Fragment {
     private EditText unit;
-    private Button convert;
     private Spinner touni, fromuni;
     private TextView res,titulo;
-    private ImageButton but, wei,flo,tem,liq;
 
 
-    double con,x,aux;
-    int y;
-    double wlb=453.50, woz=28.34,wkg=1000; //weight
-    double lt=1000, lcup=240, ltbsp=15,ltsp=5,floz=29.57,gal=3785.41, qt=946.35, pt=473.17; //Liquids
-    double pcup=125,ptbsp=10,ptsp=3.13; //fine powders
-    double cup=227,oz=28.34,stk=113.4,tbsp=14.18,tsp=4.73; //butter
-
+    private double con;
+    private double x;
+    private double aux;
+    private int y;
+    private final double wlb=453.50;
+    private final double woz=28.34;
+    private final double wkg=1000; //weight
+    private final double lt=1000;
+    private final double lcup=240;
+    private final double ltbsp=15;
+    private final double ltsp=5;
+    private final double floz=29.57;
+    private final double gal=3785.41;
+    private final double qt=946.35;
+    private final double pt=473.17; //Liquids
+    private final double pcup=125;
+    private final double ptbsp=10;
+    private final double ptsp=3.13; //fine powders
+    private final double cup=227;
+    private final double oz=28.34;
+    private final double stk=113.4;
+    private final  double tbsp=14.18;
+    private final double tsp=4.73; //butter
 
 
 
@@ -53,22 +72,31 @@ public class ConverterFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_converter, container, false);
 
 
+        AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        AdView adView = new AdView(getActivity());
+        adView.setAdSize(AdSize.SMART_BANNER);
+
+
+
+
 
         setHasOptionsMenu(true);
 
 
         unit = (EditText) rootView.findViewById(R.id.editUnit);
-        convert = (Button) rootView.findViewById(R.id.btn_convert);
+        Button convert = (Button) rootView.findViewById(R.id.btn_convert);
         res = (TextView) rootView.findViewById(R.id.txtCon);
         titulo = (TextView) rootView.findViewById(R.id.txtTitulo);
         touni=  (Spinner) rootView.findViewById(R.id.to_spinner);
         fromuni=  (Spinner) rootView.findViewById(R.id.from_spinner);
 
         // Spinner Drop down elements
-        final List<String> units = new ArrayList<String>();
-        units.add("Select");
+        final List<String> units = new ArrayList<>();
+        units.add(getString(R.string.select));
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item,units);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.spinner_item,units);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fromuni.setAdapter(adapter);
         touni.setAdapter(adapter);
@@ -82,16 +110,16 @@ public class ConverterFragment extends Fragment {
             public void onClick(View v) {
                 if(unit.getText().toString().trim().length() == 0)
                 {
-                    Toast.makeText(getActivity(), "Empty Unit Field",
+                    Toast.makeText(getActivity(), R.string.emptyU,
                             Toast.LENGTH_SHORT).show();
                     return;
 
                 }
 
                 String s = touni.getSelectedItem().toString();
-                if(s.equals("Select"))
+                if(s.equals(getString(R.string.select)))
                 {
-                    Toast.makeText(getActivity(), "Select Conversion Unit",
+                    Toast.makeText(getActivity(), R.string.selcuni,
                             Toast.LENGTH_SHORT).show();
                     return;
 
@@ -103,9 +131,9 @@ public class ConverterFragment extends Fragment {
 
 
                 String st = fromuni.getSelectedItem().toString();
-                if(st.equals("Select"))
+                if(st.equals(getString(R.string.select)))
                 {
-                    Toast.makeText(getActivity(), "Select Conversion Unit",
+                    Toast.makeText(getActivity(), R.string.selcuni,
                             Toast.LENGTH_SHORT).show();
                     return;
 
@@ -130,7 +158,7 @@ public class ConverterFragment extends Fragment {
 
 
 
-                res.setText(String.format("%.2f", con));
+                res.setText(String.format(Locale.US,"%.2f", con));
             }
 
 
@@ -139,11 +167,11 @@ public class ConverterFragment extends Fragment {
 
         });
 
-        but = (ImageButton) rootView.findViewById(R.id.btnButter);
-        wei = (ImageButton) rootView.findViewById(R.id.btnWeight);
-        flo = (ImageButton) rootView.findViewById(R.id.btnFlour);
-        tem = (ImageButton) rootView.findViewById(R.id.btnTemp);
-        liq = (ImageButton) rootView.findViewById(R.id.btnLiq);
+        ImageButton but = (ImageButton) rootView.findViewById(R.id.btnButter);
+        ImageButton wei = (ImageButton) rootView.findViewById(R.id.btnWeight);
+        ImageButton flo = (ImageButton) rootView.findViewById(R.id.btnFlour);
+        ImageButton tem = (ImageButton) rootView.findViewById(R.id.btnTemp);
+        ImageButton liq = (ImageButton) rootView.findViewById(R.id.btnLiq);
 
 
 
@@ -154,14 +182,14 @@ public class ConverterFragment extends Fragment {
             @Override
 
             public void onClick(View v) {
-                titulo.setText(String.format("Weight Conversions"));
+                titulo.setText(R.string.weight);
                 y=1;
                 unit.setText("");
                 res.setText("");
                 units.clear();
                 fromuni.setSelection(0);
                 touni.setSelection(0);
-                units.add("Select");
+                units.add(getString(R.string.select));
                 units.add("Lb");
                 units.add("Oz");
                 units.add("Kg");
@@ -179,14 +207,14 @@ public class ConverterFragment extends Fragment {
             @Override
 
             public void onClick(View v) {
-                titulo.setText(String.format("Butter Conversions"));
+                titulo.setText(R.string.butter);
                 y=2;
                 unit.setText("");
                 res.setText("");
                 units.clear();
                 fromuni.setSelection(0);
                 touni.setSelection(0);
-                units.add("Select");
+                units.add(getString(R.string.select));
                 units.add("Cup");
                 units.add("Oz");
                 units.add("gm");
@@ -205,14 +233,14 @@ public class ConverterFragment extends Fragment {
             @Override
 
             public void onClick(View v) {
-                titulo.setText(String.format("Temperature Conversions"));
+                titulo.setText(R.string.temp);
                 y=3;
                 unit.setText("");
                 res.setText("");
                 units.clear();
                 fromuni.setSelection(0);
                 touni.setSelection(0);
-                units.add("Select");
+                units.add(getString(R.string.select));
                 units.add("C");
                 units.add("F");
 
@@ -225,14 +253,14 @@ public class ConverterFragment extends Fragment {
             @Override
 
             public void onClick(View v) {
-                titulo.setText(String.format("Fine Powder Conversions"));
+                titulo.setText(R.string.fine);
                 y=4;
                 unit.setText("");
                 res.setText("");
                 units.clear();
                 fromuni.setSelection(0);
                 touni.setSelection(0);
-                units.add("Select");
+                units.add(getString(R.string.select));
                 units.add("Cup");
                 units.add("Oz");
                 units.add("gm");
@@ -250,14 +278,14 @@ public class ConverterFragment extends Fragment {
             @Override
 
             public void onClick(View v) {
-                titulo.setText(String.format("Liquid Conversions"));
+                titulo.setText(R.string.liquids);
                 y=5;
                 unit.setText("");
                 res.setText("");
                 units.clear();
                 fromuni.setSelection(0);
                 touni.setSelection(0);
-                units.add("Select");
+                units.add(getString(R.string.select));
                 units.add("Lt");
                 units.add("ml");
                 units.add("Gal");
@@ -301,7 +329,7 @@ public class ConverterFragment extends Fragment {
                 FragmentManager fm = getFragmentManager();
                 android.app.DialogFragment dialogFragment = new DialogFragment ();
                 
-                dialogFragment.show(fm, "Information");
+                dialogFragment.show(fm, String.valueOf(R.string.action_info));
 
                 break;
 
@@ -315,89 +343,124 @@ public class ConverterFragment extends Fragment {
 
     //////////////////////////////////////CONVERSIONES*********************************
 
-    public void toButter(){
+    private void toButter(){
         String s = touni.getSelectedItem().toString();
-        if (s.equals("Oz")) {
-            con = (aux * x) / oz;
-        } else if (s.equals("gm")) {
-            con = (aux * x);
-        } else if (s.equals("Stick")) {
-            con = (aux * x) / stk;
-        } else if (s.equals("Tbsp")) {
-            con = (aux * x) / tbsp;
-        } else if (s.equals("Tsp")) {
-            con = (aux * x) / tsp;
-        } else if (s.equals("Cup")) {
-            con = (aux * x) / cup;
+
+        switch (s){
+            case "Oz":
+                con = (aux * x) / oz;
+                break;
+            case "gm":
+                con = (aux * x);
+                break;
+            case "Stick":
+                con = (aux * x) / stk;
+                break;
+            case "Tbsp":
+                con = (aux * x) / tbsp;
+                break;
+            case "Tsp":
+                con = (aux * x) / tsp;
+                break;
+            case "Cup":
+                con = (aux * x) / cup;
+                break;
+            default:
+                break;
         }
 
 
-
     }
-    public void fromButter(){
+    private void fromButter(){
         String s = fromuni.getSelectedItem().toString();
-        if (s.equals("Cup")) {
-            aux = cup;
-            toButter();
-        } else if (s.equals("Oz")) {
-            aux = oz;
-            toButter();
-        } else if (s.equals("gm")) {
-            aux = 1;
-            toButter();
-        } else if (s.equals("Stick")) {
-            aux = stk;
-            toButter();
-        } else if (s.equals("Tbsp")) {
-            aux = tbsp;
-            toButter();
-        } else if (s.equals("Tsp")) {
-            aux = tsp;
-            toButter();
+
+        switch (s){
+
+
+            case "Cup":
+                aux = cup;
+                toButter();
+                break;
+            case "Oz":
+                aux = oz;
+                toButter();
+                break;
+            case "gm":
+                aux = 1;
+                toButter();
+                break;
+            case "Stick":
+                aux = stk;
+                toButter();
+                break;
+            case "Tbsp":
+                aux = tbsp;
+                toButter();
+                break;
+            case "Tsp":
+                aux = tsp;
+                toButter();
+                break;
+            default:
+                break;
         }
 
     }
+
+
 //Peso
-    public void toWeight(){
+private void toWeight(){
         String s = touni.getSelectedItem().toString();
 
-
-
-        if (s.equals("Lb")) {
-            con = (aux * x) / wlb;
-        } else if (s.equals("Oz")) {
-            con = (aux * x)/woz;
-        } else if (s.equals("Kg")) {
-            con = (aux * x) /wkg;
-        } else if (s.equals("gm")) {
-            con = (aux * x) ;
+        switch (s){
+            case "Lb":
+                con = (aux * x) / wlb;
+                break;
+            case "Oz":
+                con = (aux * x)/woz;
+                break;
+            case "Kg":
+                con = (aux * x) /wkg;
+                break;
+            case "gm":
+                con = (aux * x) ;
+                break;
         }
-
 
     }
 
-    public void fromWeight(){
+    private void fromWeight(){
         String s = fromuni.getSelectedItem().toString();
-        if (s.equals("Lb")) {
-            aux = wlb;
-            toWeight();
-        } else if (s.equals("Oz")) {
-            aux = woz;
-            toWeight();
-        } else if (s.equals("gm")) {
-            aux = 1;
-            toWeight();
-        } else if (s.equals("Kg")) {
-            aux = wkg;
-            toWeight();
+        switch (s){
+            case "Lb":
+                aux = wlb;
+                toWeight();
+                break;
+            case "Oz":
+                aux = woz;
+                toWeight();
+                break;
+            case "gm":
+                aux = 1;
+                toWeight();
+                break;
+            case "Kg":
+                aux = wkg;
+                toWeight();
+                break;
+            default:
+                break;
         }
+
 
     }
 
     //Temperaturas
-    public void conTemp() {
+    private void conTemp() {
         String s = touni.getSelectedItem().toString();
         String s2 = fromuni.getSelectedItem().toString();
+
+
         if (s2.equals("C")){
             if (s.equals("F")){
                 con=(x*1.8)+32;
@@ -417,94 +480,141 @@ public class ConverterFragment extends Fragment {
 
 
 
-    public void toLiquid(){
+    private void toLiquid(){
         String s = touni.getSelectedItem().toString();
-        if (s.equals("Lt")) {
-            con = (aux * x) / lt;
-        } else if (s.equals("ml")) {
-            con = (aux * x);
-        } else if (s.equals("Cup")) {
-            con = (aux * x)/lcup;
-        } else if (s.equals("Gal")) {
-            con = (aux * x) /gal;
-        } else if (s.equals("Qt")) {
-            con = (aux * x)/qt ;
-        } else if (s.equals("Pt")) {
-            con = (aux * x)/pt ;
-        } else if (s.equals("FlOz")) {
-            con = (aux * x)/floz ;
-        } else if (s.equals("Tbsp")) {
-            con = (aux * x)/ltbsp ;
-        } else if (s.equals("Tsp")) {
-            con = (aux * x)/ltsp ;
+        switch (s){
+            case "Lt":
+                con = (aux * x) / lt;
+                break;
+            case "ml":
+                con = (aux * x);
+                break;
+            case "Cup":
+                con = (aux * x)/lcup;
+                break;
+            case "Gal":
+                con = (aux * x) /gal;
+                break;
+            case "Qt":
+                con = (aux * x)/qt ;
+                break;
+            case "Pt":
+                con = (aux * x)/pt ;
+                break;
+            case "FlOz":
+                con = (aux * x)/floz ;
+                break;
+            case "Tbsp":
+                con = (aux * x)/ltbsp ;
+                break;
+            case "Tsp":
+                con = (aux * x)/ltsp ;
+                break;
+            default:
+                break;
+
         }
+
     }
 
-    public void fromLiquid(){
+    private void fromLiquid(){
         String s = fromuni.getSelectedItem().toString();
-        if (s.equals("Lt")) {
-            aux = lt;
-            toLiquid();
-        } else if (s.equals("ml")) {
-            aux = 1;
-            toLiquid();
-        } else if (s.equals("Gal")) {
-            aux = gal;
-            toLiquid();
-        } else if (s.equals("Qt")) {
-            aux = qt;
-            toLiquid();
-        } else if (s.equals("Pt")) {
-            aux = pt;
-            toLiquid();
-        } else if (s.equals("FlOz")) {
-            aux = floz;
-            toLiquid();
-        } else if (s.equals("Tbsp")) {
-            aux = ltbsp;
-            toLiquid();
-        } else if (s.equals("Tsp")) {
-            aux = ltsp;
-            toLiquid();
-        } else if (s.equals("Cup")) {
-            aux =lcup;
-            toLiquid();
+        switch (s){
+            case "Lt":
+                aux = lt;
+                toLiquid();
+                break;
+            case "ml":
+                aux = 1;
+                toLiquid();
+                break;
+            case "Gal":
+                aux = gal;
+                toLiquid();
+                break;
+            case "Qt":
+                aux = qt;
+                toLiquid();
+                break;
+            case "Pt":
+                aux = pt;
+                toLiquid();
+                break;
+            case "FlOz":
+                aux = floz;
+                toLiquid();
+                break;
+            case  "Tbsp":
+                aux = ltbsp;
+                toLiquid();
+                break;
+            case "Tsp":
+                aux = ltsp;
+                toLiquid();
+                break;
+            case "Cup":
+                aux =lcup;
+                toLiquid();
+                break;
+
         }
+
+
     }
 
-    public void toPowder(){
+    private void toPowder(){
         String s = touni.getSelectedItem().toString();
-        if (s.equals("Cup")) {
-            con = (aux * x) / pcup;
-        } else if (s.equals("Oz")) {
-            con = (aux * x)/oz;
-        } else if (s.equals("gm")) {
-            con = (aux * x);
-        } else if (s.equals("Tbsp")) {
-            con = (aux * x) /ptbsp;
-        } else if (s.equals("Tsp")) {
-            con = (aux * x) /ptsp;
+        switch (s){
+            case "Cup":
+                con = (aux * x) / pcup;
+                break;
+            case "Oz":
+                con = (aux * x)/oz;
+                break;
+            case "gm":
+                con = (aux * x);
+                break;
+            case "Tbsp":
+                con = (aux * x) /ptbsp;
+                break;
+            case "Tsp":
+                con = (aux * x) /ptsp;
+                break;
+
         }
+
     }
 
-    public void fromPowder(){
+    private void fromPowder(){
         String s = fromuni.getSelectedItem().toString();
-        if (s.equals("Cup")) {
-            aux = pcup;
-            toPowder();
-        } else if (s.equals("Oz")) {
-            aux = oz;
-            toPowder();
-        } else if (s.equals("gm")) {
-            aux = 1;
-            toPowder();
-        } else if (s.equals("Tbsp")){
-            aux= ptbsp;
-            toPowder();
-        } else if (s.equals("Tsp")){
-            aux= ptsp;
-            toPowder();
+
+        switch (s){
+            case "Cup":
+                aux = pcup;
+                toPowder();
+                break;
+            case "Oz":
+                aux = oz;
+                toPowder();
+                break;
+            case "gm":
+                aux = 1;
+                toPowder();
+                break;
+            case "Tbsp":
+                aux= ptbsp;
+                toPowder();
+                break;
+            case "Tsp":
+                aux= ptsp;
+                toPowder();
+                break;
+            default:
+                break;
+
+
         }
+
     }
 
 

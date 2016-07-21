@@ -3,15 +3,14 @@
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/content_fram"
-    android:background="#d8d2b8">
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:id="@+id/textView"
-        android:background="@drawable/deco"
+        android:background="@mipmap/deco"
         android:layout_alignParentTop="true" />
 
     <ListView
@@ -20,7 +19,7 @@
         android:id="@+id/lstRecipes"
         style="@style/StyleBH"
         android:layout_centerHorizontal="true"
-        android:divider="@color/fab_color_1_muted"
+        android:divider="@color/primary"
         android:dividerHeight="10dp"
         android:layout_marginTop="15dp"
         android:layout_below="@+id/textView" />
@@ -32,11 +31,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:src="@mipmap/ic_add2"
+        android:src="@mipmap/ic_add"
         fab:fab_colorNormal="@color/fab_color_1"
         fab:fab_colorPressed="@color/fab_color_1_muted"
         android:layout_margin="16dp"
         android:layout_gravity="bottom|right"/>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id">
+    </com.google.android.gms.ads.AdView>
 
 
 </RelativeLayout>

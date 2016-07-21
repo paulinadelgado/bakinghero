@@ -24,16 +24,13 @@ import java.util.List;
 
 public class AddDisplayRecipe extends Fragment implements View.OnClickListener {
 
-    TextView titleName;
-    TextView name;
-    Spinner category;
-    TextView ingredients;
-    TextView instructions;
-    TextView notes;
-    int USER_ID;
-    String valid_user_id = "";
-    String Toast_msg = null;
-    DatabaseHandler dbHandler;
+
+    private TextView name;
+    private Spinner category;
+    private TextView ingredients;
+    private  TextView instructions;
+    private  TextView notes;
+    private DatabaseHandler dbHandler;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +40,9 @@ public class AddDisplayRecipe extends Fragment implements View.OnClickListener {
         View rootView = inflater.inflate(R.layout.add_edit_recipe, container, false);
 
         setHasOptionsMenu(true);
+
+
+
         dbHandler = new DatabaseHandler(getActivity());
 
         List<String> cat = Arrays.asList(getResources().getStringArray(R.array.cat));
@@ -90,7 +90,8 @@ public class AddDisplayRecipe extends Fragment implements View.OnClickListener {
                     instructions.setText(c.getInstructions());
                     notes.setText(c.getNotes());
 
-                    switch (called_from) {
+            assert called_from != null;
+            switch (called_from) {
                         case "view":
 
 
@@ -180,6 +181,7 @@ public class AddDisplayRecipe extends Fragment implements View.OnClickListener {
                                 FragmentTransaction t = getFragmentManager().beginTransaction();
                                 Fragment mFrag = new RecipesFragment();
                                 t.replace(R.id.content_frame, mFrag);
+                                getFragmentManager().popBackStack();
                                 t.commit();
 
                             }
@@ -200,7 +202,7 @@ public class AddDisplayRecipe extends Fragment implements View.OnClickListener {
         if (extras != null) {
             int Value = extras.getInt("USER_ID");
 
-            if(category.getSelectedItem().toString().matches("Select"))
+            if(category.getSelectedItem().toString().matches(String.valueOf(R.string.select)))
             {
                 Toast.makeText(getActivity().getApplicationContext(),R.string.emCat,  Toast.LENGTH_SHORT).show();
                 return;
@@ -219,6 +221,7 @@ public class AddDisplayRecipe extends Fragment implements View.OnClickListener {
                 FragmentTransaction t = getFragmentManager().beginTransaction();
                 Fragment mFrag = new RecipesFragment();
                 t.replace(R.id.content_frame, mFrag);
+                getFragmentManager().popBackStack();
                 t.commit();
             } else {
 
@@ -230,6 +233,7 @@ public class AddDisplayRecipe extends Fragment implements View.OnClickListener {
                 FragmentTransaction t = getFragmentManager().beginTransaction();
                 Fragment mFrag = new RecipesFragment();
                 t.replace(R.id.content_frame, mFrag);
+                getFragmentManager().popBackStack();
                 t.commit();
             }
         }
@@ -237,7 +241,7 @@ public class AddDisplayRecipe extends Fragment implements View.OnClickListener {
 
 
 
-    public void EditButton(){
+    private void EditButton(){
         category.setEnabled(true);
         category.setFocusableInTouchMode(true);
         category.setClickable(true);

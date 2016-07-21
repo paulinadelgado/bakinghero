@@ -13,11 +13,16 @@
         <item name="colorControlActivated">@color/secundary</item>
         <item name="colorControlHighlight">@color/secundary</item>
         <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+        <item name="android:homeAsUpIndicator">@mipmap/ic_drawer</item>
 
-        <item name="android:homeAsUpIndicator">@drawable/ic_drawer</item>
+
+
 
 
     </style>
+
+
+
 
     <style name="AppTheme.StyleBH">
         <item name="android:textSize">16sp</item>

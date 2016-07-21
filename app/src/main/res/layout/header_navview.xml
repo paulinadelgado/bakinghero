@@ -8,7 +8,7 @@
         android:contentDescription="@string/app_name"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:src="@drawable/draw"
-        android:scaleType="fitEnd" />
+        android:src="@mipmap/draw"
+        android:scaleType="fitStart" />
 
 </FrameLayout>
