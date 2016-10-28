@@ -8,4 +8,4 @@
     android:textColor="@color/accent"
     android:paddingBottom="5dp"
     style="@style/StyleBH"
-    android:paddingTop="5dp"></TextView>
+    android:paddingTop="5dp"/>

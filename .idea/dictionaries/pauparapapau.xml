@@ -2,16 +2,23 @@
   <dictionary name="pauparapapau">
     <words>
       <w>actividad</w>
+      <w>appinvite</w>
+      <w>appspot</w>
       <w>arraylist</w>
       <w>bakinghero</w>
+      <w>bebb</w>
       <w>cargador</w>
       <w>categoria</w>
       <w>conve</w>
       <w>conversiones</w>
       <w>expor</w>
+      <w>firebase</w>
+      <w>firebaseio</w>
       <w>floz</w>
       <w>fondo</w>
       <w>fromuni</w>
+      <w>gbcrse</w>
+      <w>googleusercontent</w>
       <w>impor</w>
       <w>interfaz</w>
       <w>lcup</w>
@@ -20,7 +27,9 @@
       <w>ltsp</w>
       <w>menú</w>
       <w>mlist</w>
+      <w>mobilesdk</w>
       <w>mview</w>
+      <w>nahdv</w>
       <w>navview</w>
       <w>paulinadelgado</w>
       <w>pauparapapau</w>
@@ -28,6 +37,7 @@
       <w>ptbsp</w>
       <w>ptsp</w>
       <w>resto</w>
+      <w>rjun</w>
       <w>secundary</w>
       <w>selcuni</w>
       <w>temperaturas</w>
@@ -36,6 +46,8 @@
       <w>touni</w>
       <w>usuario</w>
       <w>viewrecipes</w>
+      <w>wkgd</w>
+      <w>zkcrm</w>
     </words>
   </dictionary>
 </component>

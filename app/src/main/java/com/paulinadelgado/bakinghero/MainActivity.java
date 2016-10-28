@@ -39,14 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
+        if (savedInstanceState == null) {
+            Fragment fragment;
+            FragmentTransaction t = getFragmentManager().beginTransaction();
+            fragment = new ConverterFragment();
+            t.replace(R.id.content_frame, fragment);
+            t.commit();
+        } else {
 
-        Fragment fragment;
-        FragmentTransaction t = getFragmentManager().beginTransaction();
-        fragment = new ConverterFragment();
-        t.replace(R.id.content_frame, fragment);
-        t.commit();
+        }
 
         NavigationView navView = (NavigationView) findViewById(R.id.navview);
+        assert navView != null;
         navView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override

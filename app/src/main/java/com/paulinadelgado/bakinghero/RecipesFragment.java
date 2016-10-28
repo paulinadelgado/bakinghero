@@ -56,6 +56,21 @@ public class RecipesFragment extends Fragment  {
         View rootView = inflater.inflate(R.layout.fragment_recipes, container, false);
         setHasOptionsMenu(true);
 
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+            } else {
+
+
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},23
+                );
+            }
+        }
 
 
         AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
@@ -180,21 +195,7 @@ public class RecipesFragment extends Fragment  {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                super.onOptionsItemSelected(item);
-            } else {
-
-
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},23
-                );
-            }
-        }
+        super.onOptionsItemSelected(item);
 
 
 

@@ -3,13 +3,18 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="10dp"
+    android:weightSum="2"
+
     android:paddingRight="10dp">
+
+
 
     <TextView
         android:id="@+id/user_name_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="gone"
         style="@style/StyleBH" />
@@ -18,36 +23,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_doily2"
+
         android:padding="10dp"
+
         android:contentDescription="@string/doily_deco" />
+
+
+
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/recipe_category_txt"
+                android:hint=""
+                style="@style/StyleBH.category" />
+
+            <TextView
+                android:id="@+id/recipe_name_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:hint=""
+                style="@style/StyleBH" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/recipe_category_txt"
-            style="@style/StyleBH.category" />
-
-        <TextView
-            android:id="@+id/recipe_name_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:hint=""
-            style="@style/StyleBH" />
-    </LinearLayout>
+        android:layout_weight="0.5"
+        android:layout_marginTop="10dp">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="right"
-        android:layout_marginTop="5dp">
+        android:gravity="left">
 
         <ImageButton
             android:id="@+id/btn_view"
@@ -92,5 +111,6 @@
             android:contentDescription="@string/delete_des" />
 
     </LinearLayout>
+        </LinearLayout>
 
 </LinearLayout>
